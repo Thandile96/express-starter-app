@@ -16,17 +16,55 @@ app.use(express.static('public'));
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-let counter = 0;
-
 app.get('/', function(req, res) {
 	res.render('index', {
-		counter
 	});
 });
 
-app.post('/count', function(req, res) {
-	counter++;
+var totalSmall = 0;
+app.post('/smallPizza', function(req, res) {
+	let size = req.body.small 
+	if(size === "small"){
+	  totalSmall += 31.99;
+	}
+  res.redirect('/')
+});
+
+var totalMedium = 0
+app.post('/mediumPizza', function(req, res) {
+  let size = req.body.medium 
+  if(size === "medium"){
+	totalMedium += 76.99;
+  }
 	res.redirect('/')
+});
+
+var totalLarge = 0;
+app.post('/largePizza', function(req, res) {
+	let size = req.body.large 
+	if(size === "large"){
+	  totalLarge += 98.99;
+	}
+  
+	res.redirect('/')
+});
+
+app.get('/getsmall', function(req, res) {
+	res.render('index', {
+		totalSmall
+	});
+});
+
+app.get('/getmeduim', function(req, res) {
+	res.render('index', {
+		totalMedium
+	});
+});
+
+app.get('/getlarge', function(req, res) {
+	res.render('index', {
+		totalLarge
+	});
 });
 
 
