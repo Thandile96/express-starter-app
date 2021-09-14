@@ -1,8 +1,14 @@
 const express = require('express');
 const exphbs  = require('express-handlebars');
+const pizzaPerfect = require('./pizzasFactory');
+const bodyParser = require('body-parser');
 
 const app = express();
+const PizzaPerfect = pizzaPerfect()
 const PORT =  process.env.PORT || 3017;
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // enable the req.body object - to allow us to use HTML forms
 app.use(express.json());
@@ -18,52 +24,59 @@ app.set('view engine', 'handlebars');
 
 app.get('/', function(req, res) {
 	res.render('index', {
+		totalSmall: PizzaPerfect.smallTotal(),
+		totalMedium: PizzaPerfect.mediumTotal(),
+		totalLarge: PizzaPerfect.largeTotal(),
+		totalGrand: PizzaPerfect.grandPizza(),
+
+		counterSmall: PizzaPerfect.counterForSmall(),
+		counterMedium: PizzaPerfect.counuterForMedium(),
+		counterLarge: PizzaPerfect.counterForLarge()
+		
 	});
+	// console.log(PizzaPerfect.smallTotal())
 });
 
-var totalSmall = 0;
+
 app.post('/smallPizza', function(req, res) {
-	let size = req.body.small 
-	if(size === "small"){
-	  totalSmall += 31.99;
-	}
-  res.redirect('/')
+	//console.log(req.body.small);
+	var smallSize = req.body.small
+	PizzaPerfect.buySmallPizza(smallSize)
+    res.redirect('/')
 });
 
-var totalMedium = 0
 app.post('/mediumPizza', function(req, res) {
-  let size = req.body.medium 
-  if(size === "medium"){
-	totalMedium += 76.99;
-  }
+	var mediumSize = req.body.medium
+	PizzaPerfect.buyMediumPizza(mediumSize)
 	res.redirect('/')
+	
 });
+	
 
-var totalLarge = 0;
 app.post('/largePizza', function(req, res) {
-	let size = req.body.large 
-	if(size === "large"){
-	  totalLarge += 98.99;
-	}
-  
+	var largeSize = req.body.large
+	PizzaPerfect.buyLargePizza(largeSize)
 	res.redirect('/')
 });
 
 app.get('/getsmall', function(req, res) {
+	var smallPizzaTotal = PizzaPerfect.smallTotal()
 	res.render('index', {
-		totalSmall
+		smallPizzaTotal
 	});
 });
 
 app.get('/getmeduim', function(req, res) {
+	var mediumPizzaTotal = PizzaPerfect.mediumTotal()
 	res.render('index', {
-		totalMedium
+		mediumPizzaTotal
 	});
 });
 
 app.get('/getlarge', function(req, res) {
+	var largePizzaTotal = PizzaPerfect.largeTotal()
 	res.render('index', {
-		totalLarge
+		largePizzaTotal
 	});
 });
 

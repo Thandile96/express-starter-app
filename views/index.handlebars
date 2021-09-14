@@ -30,45 +30,44 @@
         <table>
           <tr>
             <td><strong>Small pizzas total:</strong></td>
-            <td><span class="smallTotalPrice">0.00</span></td>
+            <td><span class="smallTotalPrice">x{{counterSmall}} {{totalSmall}}</span></td>
           </tr>
 
           <tr>
             <td><strong>Medium pizzas total:</strong></td>
-            <td><span class="mediumTotalPrice">0.00</span></td>
+            <td><span class="mediumTotalPrice">x{{counterMedium}} {{totalMedium}}</span></td>
           </tr>
           <tr>
             <td><strong>Large pizza total:</strong></td>
-            <td><span class="largeTotalPrice">0.00</span></td>
+            <td><span class="largeTotalPrice">x{{counterLarge}} {{totalLarge}}</span></td>
           </tr>
           <tr>
             <td><strong>Total price</strong></td>
-            <td><span class="totalPrice">0.00</span></td>
+            <td><span class="totalPrice">{{totalGrand}}</span></td>
           </tr>
         </table>
     </div>
 
     <div class="pizzas">
-        <form action="smallPizza" method="POST">
+        <form action="/smallPizza" method="POST">
           <div class="pizza small">
-          <div class="info">
-            <img src="pizza.png"
-              alt="">
-            <h2>Small Pizza</h2>
-            <strong>R35.00</strong>
-            <i>
-              <div>
-
-              </div>
-                small pizza with 3 toppings
-                1 meat topping.
-                3 or less other toppings.
-              </div>
-            </i>
-          </div>
-          <div class="orderBox">
-            <button class="btn orderSmallPizza" name="small" type="submit" style="margin-left: auto">Buy small pizza</button>
-          </div>
+            <div class="info">
+              <img src="pizza.png"
+                alt="">
+              <h2>Small Pizza</h2>
+              <strong>R35.00</strong>
+              <i>
+                <div>
+                  small pizza with 3 toppings
+                  1 meat topping.
+                  3 or less other toppings.
+                </div>
+              </i>   
+            </div>
+            <div class="orderBox">
+              <button class="btn orderSmallPizza" name="small" value="small" type="submit" style="margin-left: auto">Buy small pizza</button>
+            </div>
+          </div>  
         </form>
 
 
@@ -78,7 +77,7 @@
             <img src="pizza.png"
               alt="">
             <h2>Medium Pizza</h2>
-            <strong>R65.00</strong>
+            <strong>R75.00</strong>
 
             <div>
               medium margeritha pizza with 3 toppings max.
@@ -87,7 +86,7 @@
             </div>
           </div>
           <div class="orderBox">
-            <button class="btn orderMediumPizza" name="medium" type="submit" style="margin-left: auto">Buy medium pizza</button>
+            <button class="btn orderMediumPizza" name="medium" value="medium" type="submit" style="margin-left: auto">Buy medium pizza</button>
           </div>
 
         </div>
@@ -99,7 +98,7 @@
             <img src="pizza.png"
               alt="">
             <h2>Large Pizza</h2>
-            <strong>R85.00</strong>
+            <strong>R90.00</strong>
             <div>
               large margeritha pizza with 3 toppings max.
               3 meat toppings max.
@@ -107,7 +106,7 @@
             </div>
           </div>
           <div class="orderBox" >
-            <button class="btn orderLargePizza" name="large" type="submit" style="margin-left: auto">Buy large pizza</button>
+            <button class="btn orderLargePizza" name="large" value="large" type="submit" style="margin-left: auto">Buy large pizza</button>
           </div>
         </div>
       </form>
@@ -121,8 +120,8 @@
     </div>
   </div>
 </body>
-<script src="order-pizza.js"></script>
-<script src="pizza.js"></script>
+{{!-- <script src="order-pizza.js"></script>
+<script src="pizza.js"></script> --}}
 
 <hr>
 
